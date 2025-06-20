@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.submenu-panel.active').forEach(submenu => {
             submenu.classList.remove('active');
         });
-        mainMenu.classList.remove('submenu-active');
         mainMenuLinks.forEach(link => link.classList.remove('active'));
         menuBackground.style.opacity = 0;
     };
@@ -73,85 +72,144 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         link.addEventListener('mouseleave', () => {
-            if (!mainMenu.classList.contains('submenu-active')) {
+            // Only hide background if no submenu is active
+            if (!document.querySelector('.submenu-panel.active')) {
                 menuBackground.style.opacity = 0;
             }
         });
 
         link.addEventListener('click', (e) => {
+            // Handle download links separately
+            if (link.hasAttribute('download')) {
+                setTimeout(()=> toggleMenu(false), 500);
+                return;
+            }
+            
             e.preventDefault();
+        
             const submenuId = link.dataset.submenu;
             const submenu = document.getElementById(submenuId);
-            if (submenu) {
-                document.querySelectorAll('.submenu-panel.active').forEach(activeSub => {
-                    activeSub.classList.remove('active');
-                });
-                submenu.classList.add('active');
-                mainMenu.classList.add('submenu-active');
-                mainMenuLinks.forEach(l => l.classList.remove('active'));
+        
+            // If the link has no corresponding submenu, treat it as a section link
+            if (!submenu) {
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    toggleMenu(false);
+                    setTimeout(() => {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }, 350);
+                }
+                return; // Exit here
+            }
+        
+            // --- Logic for links with submenus ---
+            
+            const isAlreadyActive = link.classList.contains('active');
+        
+            // First, clear any existing active states
+            document.querySelectorAll('.submenu-panel.active').forEach(activeSub => {
+                activeSub.classList.remove('active');
+            });
+            mainMenuLinks.forEach(l => {
+                l.classList.remove('active');
+            });
+        
+            // If the clicked link was NOT the one that was active, we activate it.
+            // If it WAS active, the previous step already deactivated it, achieving the toggle-off effect.
+            if (!isAlreadyActive) {
                 link.classList.add('active');
+                submenu.classList.add('active');
+                
+                // Update background
+                const bgImage = link.dataset.bg;
+                if (bgImage) {
+                    menuBackground.style.backgroundImage = `url(${bgImage})`;
+                    menuBackground.style.opacity = 1;
+                }
+            } else {
+                // If we just toggled it off, ensure background is cleared.
+                menuBackground.style.opacity = 0;
             }
-        });
-    });
-
-    document.querySelectorAll('.submenu-back-button').forEach(button => {
-        button.addEventListener('click', () => {
-            const activeSubmenu = document.querySelector('.submenu-panel.active');
-            if (activeSubmenu) {
-                activeSubmenu.classList.remove('active');
-            }
-            mainMenu.classList.remove('submenu-active');
-            mainMenuLinks.forEach(link => link.classList.remove('active'));
-            menuBackground.style.opacity = 0;
         });
     });
 
     // --- Search Logic ---
     const toggleSearch = (show) => {
-        if (show) {
+         if (show) {
             searchBar.classList.remove('hidden');
-            searchInput.focus();
+            // Use a short timeout to ensure the element is visible before focusing
+            setTimeout(() => searchInput.focus(), 50);
         } else {
             searchBar.classList.add('hidden');
             searchInput.value = '';
-            searchResultsContainer.innerHTML = '';
+            if (searchResultsContainer) {
+               searchResultsContainer.innerHTML = '';
+            }
         }
     };
 
-    searchButton.addEventListener('click', () => {
+    searchButton.addEventListener('click', (e) => {
+        e.stopPropagation();
         const isHidden = searchBar.classList.contains('hidden');
         toggleSearch(isHidden);
     });
     
     closeSearchButton.addEventListener('click', () => toggleSearch(false));
-    searchInput.addEventListener('input', () => performSearch(searchInput.value));
+
+    searchInput.addEventListener('input', () => {
+        performSearch(searchInput.value)
+    });
 
     function performSearch(query) {
+        if(!searchResultsContainer) return;
+        
+        // Clear previous results
         searchResultsContainer.innerHTML = '';
+
         if (query.trim().length < 2) {
+            return; // Don't search for very short strings
+        }
+
+        const regex = new RegExp(query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'gi');
+        const results = searchableContent.map(item => {
+            const matches = [...item.content.matchAll(regex)];
+            return { ...item, matchCount: matches.length };
+        }).filter(item => item.matchCount > 0);
+
+        // Sort results by number of matches
+        results.sort((a, b) => b.matchCount - a.matchCount);
+
+        if (results.length === 0) {
+            searchResultsContainer.innerHTML = `<div class="p-4 text-gray-400">No results found.</div>`;
             return;
         }
 
-        const regex = new RegExp(query, 'gi');
-        const results = searchableContent.filter(item => item.content.match(regex));
-
         results.forEach(result => {
-            const resultElement = document.createElement('div');
-            resultElement.className = 'search-result-item';
+            const resultElement = document.createElement('a');
+            resultElement.href = `#${result.id}`;
+            resultElement.className = 'block p-4 border-b border-gray-700 hover:bg-gray-600 transition-colors duration-200';
             
-            const matchIndex = result.content.search(regex);
-            const startIndex = Math.max(0, matchIndex - 30);
-            const endIndex = Math.min(result.content.length, matchIndex + query.length + 30);
-            let snippet = '...' + result.content.substring(startIndex, endIndex) + '...';
+            // Create a snippet
+            const firstMatchIndex = result.content.toLowerCase().indexOf(query.toLowerCase());
+            const startIndex = Math.max(0, firstMatchIndex - 50);
+            const endIndex = Math.min(result.content.length, firstMatchIndex + query.length + 50);
+            let snippet = result.content.substring(startIndex, endIndex);
+
+            // Add ellipses if the snippet is truncated
+            if(startIndex > 0) snippet = "..." + snippet;
+            if(endIndex < result.content.length) snippet = snippet + "...";
             
-            snippet = snippet.replace(regex, `<span class="search-highlight">${query}</span>`);
+            // Highlight all matches in the snippet
+            snippet = snippet.replace(regex, `<span class="bg-yellow-400 text-black font-bold">${query}</span>`);
 
             resultElement.innerHTML = `
-                <div class="search-result-title">${result.title}</div>
-                <div class="search-result-snippet">${snippet}</div>
+                <div class="font-bold text-white">${result.title}</div>
+                <div class="text-sm text-gray-400 mt-1">${snippet}</div>
             `;
 
-            resultElement.addEventListener('click', () => {
+            resultElement.addEventListener('click', (e) => {
+                e.preventDefault();
                 const targetElement = document.getElementById(result.id);
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
@@ -161,6 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             searchResultsContainer.appendChild(resultElement);
         });
     }
+
 
     // --- Animation & General Listeners ---
     window.addEventListener('scroll', () => {
@@ -178,16 +237,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            if (!menuOverlay.classList.contains('invisible')) {
-                toggleMenu(false);
-            }
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                setTimeout(() => {
+            // This logic is now handled inside the menu click listener to allow for menu closing.
+            // However, we keep this for any in-page links that are *not* in the menu.
+            if (!this.closest('#menu-overlay') && !this.closest('#search-results-container')) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
-                }, 350);
+                }
             }
         });
     });
@@ -227,6 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
     projectCards.forEach(card => {
         card.addEventListener('click', (e) => {
             if (e.target.closest('.view-project-link')) {
+                // Let the link's default behavior happen (opening a new tab)
                 return;
             }
             card.classList.toggle('expanded');
