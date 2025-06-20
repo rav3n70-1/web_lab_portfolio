@@ -144,7 +144,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(circle, rgba(0,0,0,0.1) -150%, rgba(0,0,0,0.9) 90%);
+    background-image: radial-gradient(circle, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.9) 90%);
 }
 
 #main-menu {
@@ -154,7 +154,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .main-menu-link {
     font-family: 'Crimson Text', serif;
-    font-size: 3rem;
+    font-size: 2.5rem;
+    font-weight: 700;
     transition: color 0.3s ease;
     position: relative;
     padding-bottom: 10px; /* Space for underline */
@@ -172,7 +173,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 3px;
     bottom: 0;
     left: 0;
-    background-color: #ffffff;
+    background-color: #A51C30;
     transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -207,7 +208,7 @@ h1, h2, h3, h4, h5, h6 {
     top: 10%;
     bottom: 10%;
     width: 1px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .submenu-panel.active {
@@ -216,21 +217,22 @@ h1, h2, h3, h4, h5, h6 {
 
 .submenu-title {
     font-family: 'Crimson Text', serif;
-    font-size: 2rem;
+    font-size: 1.75rem;
+    font-weight: 700;
     color: white;
     margin-bottom: 0.5rem;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid #A51C30;
     padding-bottom: 0.5rem;
 }
 .submenu-description {
-    color: #ffffff;
+    color: #ccc;
     margin-bottom: 1.5rem;
 }
 
 .submenu-link {
     display: inline-block;
-    color: #ffffff;
-    font-size: 2rem;
+    color: #ccc;
+    font-size: 1.25rem;
     padding: 0.75rem 0;
     transition: color 0.3s;
      position: relative;
@@ -247,7 +249,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 2px;
     bottom: 5px;
     left: 0;
-    background-color: #ffffff;
+    background-color: #A51C30;
     transition: width 0.3s ease;
 }
 
@@ -294,6 +296,49 @@ h1, h2, h3, h4, h5, h6 {
 }
 .social-icon:hover {
     transform: scale(1.1) translateY(-5px);
+}
+
+/* Experience Section Styling */
+.experience-item {
+    position: relative;
+    padding-left: 2.5rem; /* Space for timeline line and dot */
+    padding-bottom: 2.5rem;
+    border-left: 2px solid #ddd;
+}
+
+.experience-item:last-child {
+    border-left: 2px solid transparent;
+    padding-bottom: 0;
+}
+
+.experience-dot {
+    position: absolute;
+    left: -0.5rem; /* Adjust to center the dot on the line */
+    top: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: #A51C30;
+    border: 3px solid #F9F9F9;
+}
+
+.experience-date {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0.25rem;
+}
+
+.experience-title {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.5rem;
+    color: #A51C30;
+    font-weight: 700;
+}
+
+.experience-company {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
 }
 
 #search-results-container {
