@@ -154,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .main-menu-link {
     font-family: 'Crimson Text', serif;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
     transition: color 0.3s ease;
     position: relative;
@@ -344,4 +344,114 @@ h1, h2, h3, h4, h5, h6 {
 #search-results-container {
     max-height: 40vh;
     overflow-y: auto;
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 1024px) {
+    .main-menu-link {
+        font-size: 2rem;
+    }
+    .submenu-title {
+        font-size: 1.5rem;
+    }
+    .submenu-link {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Adjust general typography for tablets */
+    .hero-section h1 {
+        font-size: 2.5rem; /* Tailwind text-4xl */
+    }
+    .hero-section p {
+        font-size: 1.125rem; /* Tailwind text-lg */
+    }
+    .section-title {
+        font-size: 2.25rem; /* Tailwind text-3xl */
+    }
+
+    /* Adjust about me section for better stacking */
+    #about .flex-wrap {
+        flex-direction: column;
+    }
+    #about .w-full.md\:w-2\/3 {
+        padding-left: 0;
+        margin-top: 2rem;
+    }
+
+    /* Adjust menu for tablets */
+    .main-menu-link {
+        font-size: 1.75rem;
+    }
+     .submenu-panel {
+        padding: 0 1.5rem 0 50%;
+    }
+    .submenu-title {
+        font-size: 1.3rem;
+    }
+    .submenu-link {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    /* Adjust general typography for mobile */
+     .hero-section {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+     .hero-section p {
+        font-size: 1rem;
+    }
+    .section-title {
+        font-size: 1.875rem;
+    }
+
+    /* Adjust section padding for mobile */
+    section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    
+    /* Make the menu more compact */
+    .menu-overlay {
+        padding: 1.5rem;
+    }
+     #main-menu {
+        justify-content: center;
+        text-align: center;
+    }
+    .main-menu-link {
+        font-size: 1.5rem;
+    }
+    .submenu-panel {
+        padding: 0 1.5rem 0 1.5rem;
+        justify-content: flex-start;
+        padding-top: 8rem;
+        background-color: #111;
+    }
+    .submenu-panel::before {
+        display: none;
+    }
+    .submenu-title {
+        font-size: 1.25rem;
+    }
+    .submenu-link {
+        font-size: 1rem;
+    }
+
+    /* Adjust contact section for mobile */
+    #contact .flex-wrap {
+        flex-direction: column;
+    }
+    #contact .rounded-l-lg {
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+    #contact .w-full.md\:w-1\/2:last-child {
+         border-radius: 0 0 0.5rem 0.5rem;
+    }
 }
