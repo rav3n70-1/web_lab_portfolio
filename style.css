@@ -1,4 +1,3 @@
-/* Custom CSS to mimic Harvard's style */
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #F9F9F9;
@@ -6,7 +5,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Crimson Text', serif;
-    color: #A51C30; /* Harvard Crimson */
+    color: #A51C30; 
 }
 
 .crimson-bg { background-color: #A51C30; }
@@ -22,10 +21,10 @@ h1, h2, h3, h4, h5, h6 {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.9) 100%), url('https://i.ibb.co/ycmXwtxk/diu.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Parallax effect */
+    background-attachment: fixed; 
 }
 
-/* --- Improved Project Section --- */
+
 .project-card {
     transition: box-shadow 0.3s ease;
     cursor: pointer;
@@ -60,7 +59,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .project-overlay h3 {
     color: white;
-    font-size: 1.5rem; /* 24px */
+    font-size: 1.5rem; 
     font-weight: 700;
 }
 
@@ -89,10 +88,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .project-card.expanded .project-details-expandable {
-    max-height: 200px; /* Adjust as needed */
+    max-height: 200px; 
 }
 
-/* Animations & Overlays */
+
 .fade-in-section {
     opacity: 0;
     transform: translateY(20px);
@@ -119,7 +118,6 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes typing { from { width: 0 } to { width: 100% } }
 @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #A51C30; } }
 
-/* Full-screen Menu Overlay */
 .menu-overlay {
     transition: opacity 0.3s ease-in-out, visibility 0.3s;
     background-color: #111;
@@ -148,7 +146,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #main-menu {
-    /* Set a higher z-index to ensure it's clickable */
     z-index: 30;
 }
 
@@ -158,14 +155,14 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     transition: color 0.3s ease;
     position: relative;
-    padding-bottom: 10px; /* Space for underline */
+    padding-bottom: 10px; 
     display: inline-block; 
 }
 .main-menu-link:hover, .main-menu-link.active {
     color: #A51C30;
 }
 
-/* Underline animation */
+
 .main-menu-link::after {
     content: '';
     position: absolute;
@@ -195,9 +192,8 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 2rem 0 40%; /* Position submenu content to the right */
+    padding: 0 2rem 0 40%; 
     transform: translateX(100%);
-    /* Sits below the main menu */
     z-index: 20;
 }
 
@@ -263,11 +259,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .search-highlight {
-    background-color: #fBBF24; /* amber-400 */
+    background-color: #fBBF24; 
     color: #111;
 }
 
-/* Section Title Underline Animation */
+
 .section-title {
     position: relative;
     padding-bottom: 0.5rem;
@@ -290,7 +286,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-/* Social Icon Bounce Animation */
+
 .social-icon {
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -298,10 +294,10 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.1) translateY(-5px);
 }
 
-/* Experience Section Styling */
+
 .experience-item {
     position: relative;
-    padding-left: 2.5rem; /* Space for timeline line and dot */
+    padding-left: 2.5rem; 
     padding-bottom: 2.5rem;
     border-left: 2px solid #ddd;
 }
@@ -313,7 +309,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .experience-dot {
     position: absolute;
-    left: -0.5rem; /* Adjust to center the dot on the line */
+    left: -0.5rem; 
     top: 0.25rem;
     width: 1rem;
     height: 1rem;
@@ -346,7 +342,6 @@ h1, h2, h3, h4, h5, h6 {
     overflow-y: auto;
 }
 
-/* --- Responsive Styles --- */
 @media (max-width: 1024px) {
     .main-menu-link {
         font-size: 2rem;
@@ -360,18 +355,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
-    /* Adjust general typography for tablets */
+    
     .hero-section h1 {
-        font-size: 2.5rem; /* Tailwind text-4xl */
+        font-size: 2.5rem; 
     }
     .hero-section p {
-        font-size: 1.125rem; /* Tailwind text-lg */
+        font-size: 1.125rem; 
     }
     .section-title {
-        font-size: 2.25rem; /* Tailwind text-3xl */
+        font-size: 2.25rem; 
     }
 
-    /* Adjust about me section for better stacking */
+    
     #about .flex-wrap {
         flex-direction: column;
     }
@@ -380,7 +375,7 @@ h1, h2, h3, h4, h5, h6 {
         margin-top: 2rem;
     }
 
-    /* Adjust menu for tablets */
+    
     .main-menu-link {
         font-size: 1.75rem;
     }
@@ -396,7 +391,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 640px) {
-    /* Adjust general typography for mobile */
+    
      .hero-section {
         padding-top: 6rem;
         padding-bottom: 6rem;
@@ -411,13 +406,12 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 1.875rem;
     }
 
-    /* Adjust section padding for mobile */
     section {
         padding-top: 4rem;
         padding-bottom: 4rem;
     }
     
-    /* Make the menu more compact */
+
     .menu-overlay {
         padding: 1.5rem;
     }
@@ -444,7 +438,6 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 1rem;
     }
 
-    /* Adjust contact section for mobile */
     #contact .flex-wrap {
         flex-direction: column;
     }
