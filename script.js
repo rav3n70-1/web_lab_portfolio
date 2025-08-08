@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTopButton = document.getElementById('back-to-top');
     const heroSection = document.getElementById('hero');
     const skillCountElement = document.getElementById('skill-count');
+    // theme toggle removed
 
     let searchableContent = [];
 
@@ -36,17 +37,21 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     buildSearchIndex();
 
+    // dark mode logic removed
+
     // --- Menu Logic ---
     const toggleMenu = (show) => {
         if (show) {
             menuOverlay.classList.remove('invisible', 'opacity-0');
             body.classList.add('overflow-hidden');
+            menuOverlay.setAttribute('aria-hidden', 'false');
         } else {
             menuOverlay.classList.add('opacity-0');
             setTimeout(() => {
                 menuOverlay.classList.add('invisible');
                 body.classList.remove('overflow-hidden');
                 resetMenuState();
+                menuOverlay.setAttribute('aria-hidden', 'true');
             }, 300);
         }
     };
@@ -61,6 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     menuButton.addEventListener('click', () => toggleMenu(true));
     closeMenuButton.addEventListener('click', () => toggleMenu(false));
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !menuOverlay.classList.contains('invisible')) {
+            toggleMenu(false);
+        }
+    });
 
     mainMenuLinks.forEach(link => {
         link.addEventListener('mouseenter', () => {
@@ -159,6 +169,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchInput.addEventListener('input', () => {
         performSearch(searchInput.value)
+    });
+    document.addEventListener('keydown', (e) => {
+        // Quick open search with Ctrl/Cmd + K
+        const isMac = navigator.platform.toUpperCase().includes('MAC');
+        if ((isMac ? e.metaKey : e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            const isHidden = searchBar.classList.contains('hidden');
+            toggleSearch(isHidden);
+        }
+        if (e.key === 'Escape' && !searchBar.classList.contains('hidden')) {
+            toggleSearch(false);
+        }
     });
 
     function performSearch(query) {
@@ -285,10 +307,22 @@ document.addEventListener('DOMContentLoaded', () => {
     projectCards.forEach(card => {
         card.addEventListener('click', (e) => {
             if (e.target.closest('.view-project-link')) {
-                // Let the link's default behavior happen (opening a new tab)
                 return;
             }
             card.classList.toggle('expanded');
+        });
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.classList.toggle('expanded');
+            }
+        });
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-expanded', 'false');
+        card.addEventListener('transitionend', () => {
+            const isExpanded = card.classList.contains('expanded');
+            card.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
         });
     });
 });

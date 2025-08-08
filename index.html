@@ -11,14 +11,14 @@
 <body class="bg-gray-100">
 
     <!-- Header -->
-    <header id="header" class="bg-white/80 backdrop-blur-sm sticky top-0 z-40">
+    <header id="header" class="bg-white/70 backdrop-blur-md sticky top-0 z-40 shadow-sm">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold crimson-text">Mehedi Hasan Rohan</a>
-            <div class="flex items-center space-x-4">
-                <button id="search-button" class="text-gray-600 hover:crimson-text">
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <button id="search-button" class="p-2 rounded-lg text-gray-700 hover:bg-gray-100" aria-label="Open search">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </button>
-                <button id="menu-button" class="flex items-center text-gray-800">
+                <button id="menu-button" class="flex items-center p-2 rounded-lg text-gray-800 hover:bg-gray-100">
                     <span class="mr-2 font-semibold hidden sm:inline">Menu</span>
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
@@ -27,8 +27,8 @@
         <!-- New Search Bar -->
         <div id="search-bar" class="bg-gray-800 text-white hidden">
              <div class="container mx-auto p-4 flex items-center">
-                <input type="text" id="search-input" placeholder="Search my portfolio..." class="flex-grow bg-transparent border-b border-gray-500 focus:outline-none focus:border-red-400">
-                <button id="close-search-button" class="ml-4 text-gray-400 hover:text-white">
+                <input type="text" id="search-input" placeholder="Search my portfolio..." class="flex-grow bg-transparent border-b border-gray-500 focus:outline-none focus:border-red-400" aria-label="Search input">
+                <button id="close-search-button" class="ml-4 text-gray-400 hover:text-white" aria-label="Close search">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
@@ -37,15 +37,16 @@
     </header>
 
     <!-- Menu Overlay -->
-    <div id="menu-overlay" class="menu-overlay fixed inset-0 z-50 p-6 sm:p-8 flex flex-col text-white opacity-0 invisible">
+    <div id="menu-overlay" class="menu-overlay fixed inset-0 z-50 p-6 sm:p-8 flex flex-col text-white opacity-0 invisible" aria-hidden="true" role="dialog" aria-modal="true">
         <!-- Dynamic Background -->
         <div id="menu-background" class="menu-background-image"></div>
         <div class="menu-background-gradient"></div>
+        <div class="menu-background-overlay" aria-hidden="true"></div>
 
         <!-- Top Bar -->
         <div class="flex justify-between items-center w-full relative z-10">
             <a href="#" class="text-xl sm:text-2xl font-bold" style="font-family: 'Crimson Text', serif;">Mehedi Hasan Rohan</a>
-            <button id="close-menu-button" class="flex items-center space-x-2 text-lg hover:opacity-80 transition">
+            <button id="close-menu-button" class="flex items-center space-x-2 text-lg hover:opacity-80 transition" aria-label="Close menu">
                 <span>Close</span>
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
@@ -54,14 +55,14 @@
         <!-- Main Navigation & Submenus Wrapper -->
         <div class="flex-grow flex relative overflow-hidden">
             <!-- Main Menu -->
-            <nav id="main-menu" class="flex items-center w-full md:w-1/2 lg:w-1/3 relative z-10 menu-panel">
+            <nav id="main-menu" class="flex items-center w-full md:w-1/2 lg:w-1/3 relative z-10 menu-panel" aria-label="Main menu">
                 <div class="space-y-4">
-                    <div class="main-menu-item-wrapper"><a href="#about" data-submenu="about-submenu" data-bg="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80" class="main-menu-link text-5xl sm:text-7xl">About</a></div>
-                    <div class="main-menu-item-wrapper"><a href="#projects" data-submenu="projects-submenu" data-bg="https://i.ibb.co.com/KpQTJ44W/imgi-110-1673636348357.jpg?auto=format&fit=crop&w=1920&q=80" class="main-menu-link text-5xl sm:text-7xl">Projects</a></div>
-                    <div class="main-menu-item-wrapper"><a href="#" data-submenu="github-submenu" data-bg="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1920&q=80" class="main-menu-link text-5xl sm:text-7xl">GitHub Repository</a></div>
-                    <div class="main-menu-item-wrapper"><a href="#skills" data-submenu="skills-submenu" data-bg="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=1920&q=80" class="main-menu-link text-5xl sm:text-7xl">Skills</a></div>
-                    <div class="main-menu-item-wrapper"><a href="#contact" data-submenu="contact-submenu" data-bg="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=1920&q=80" class="main-menu-link text-5xl sm:text-7xl">Contact</a></div>
-                    <div class="main-menu-item-wrapper"><a href="https://drive.google.com/file/d/1WAxox0fgvLt9aMrI77gnVcsME7rZ_UiX/view?usp=drive_link" download="Mehedi_Hasan_Rohan_CV.pdf" class="main-menu-link text-5xl sm:text-7xl">Download CV</a></div>
+                    <div class="main-menu-item-wrapper"><a href="#about" data-submenu="about-submenu" data-bg="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80" class="main-menu-link">About</a></div>
+                    <div class="main-menu-item-wrapper"><a href="#projects" data-submenu="projects-submenu" data-bg="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1920&q=80" class="main-menu-link">Projects</a></div>
+                    <div class="main-menu-item-wrapper"><a href="#" data-submenu="github-submenu" data-bg="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1920&q=80" class="main-menu-link">GitHub Repository</a></div>
+                    <div class="main-menu-item-wrapper"><a href="#skills" data-submenu="skills-submenu" data-bg="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=1920&q=80" class="main-menu-link">Skills</a></div>
+                    <div class="main-menu-item-wrapper"><a href="#contact" data-submenu="contact-submenu" data-bg="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=1920&q=80" class="main-menu-link">Contact</a></div>
+                    <div class="main-menu-item-wrapper"><a href="https://drive.google.com/file/d/1WAxox0fgvLt9aMrI77gnVcsME7rZ_UiX/view?usp=drive_link" target="_blank" rel="noopener" download="Mehedi_Hasan_Rohan_CV.pdf" class="main-menu-link">Download CV</a></div>
                 </div>
             </nav>
 
@@ -122,8 +123,11 @@
         <section id="hero" class="hero-section text-white text-center py-32 relative overflow-hidden">
             <div class="container mx-auto px-6 typewriter relative z-10">
                 <h1 class="text-5xl font-bold mb-4 text-white inline-block">Full-Stack Developer & Android Developer</h1>
-                <p class="text-xl mb-8 mt-4">Crafting robust and intuitive web and mobile experiences.</p>
-                <a href="#projects" class="bg-white crimson-text font-bold py-3 px-6 rounded-lg hover:bg-gray-200 transition duration-300">View My Work</a>
+                <p class="text-xl mb-10 mt-4">Crafting robust and intuitive web and mobile experiences.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#projects" class="bg-white crimson-text font-bold py-3 px-6 rounded-xl hover:bg-gray-100 transition duration-300 shadow-md">View My Work</a>
+                    <a href="#contact" class="bg-transparent border border-white text-white font-semibold py-3 px-6 rounded-xl hover:bg-white/10 transition duration-300">Contact Me</a>
+                </div>
             </div>
         </section>
 
@@ -133,14 +137,16 @@
                 <div class="text-center mb-12">
                     <h2 class="text-5xl font-bold section-title">About Me</h2>
                 </div>
-                <div class="flex flex-wrap items-center">
-                    <div class="w-full md:w-1/3 text-center mb-8 md:mb-0">
-                         <img src="https://i.ibb.co/TDKsdv4Q/pp.jpg" alt="Mehedi Hasan Rohan" class="rounded-full mx-auto shadow-lg" style="border: 5px solid #A51C30;">
+                <div class="grid md:grid-cols-3 gap-10 items-center">
+                    <div class="w-full text-center">
+                         <img src="https://i.ibb.co/TDKsdv4Q/pp.jpg" alt="Mehedi Hasan Rohan" class="rounded-2xl mx-auto shadow-xl ring-4 ring-red-700/30">
                     </div>
-                    <div class="w-full md:w-2/3 md:pl-12">
-                        <p class="text-gray-700 leading-relaxed text-lg">
-                            I am a highly motivated Computer Science undergraduate from Daffodil International University with a demonstrated passion for full-stack development. My experience encompasses intuitive front-end design, robust back-end architecture, and engaging mobile applications. I possess a strong command of object-oriented programming and software engineering principles, proven through hands-on projects. With a detail-oriented approach to problem-solving, I am actively seeking an internship to apply and expand my diverse skill set on real-world challenges and contribute to a forward-thinking development team.
-                        </p>
+                    <div class="md:col-span-2">
+                        <div class="bg-gray-50 rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+                            <p class="text-gray-700 leading-relaxed text-lg">
+                                I am a highly motivated Computer Science undergraduate from Daffodil International University with a demonstrated passion for full-stack development. My experience encompasses intuitive front-end design, robust back-end architecture, and engaging mobile applications. I possess a strong command of object-oriented programming and software engineering principles, proven through hands-on projects. With a detail-oriented approach to problem-solving, I am actively seeking an internship to apply and expand my diverse skill set on real-world challenges and contribute to a forward-thinking development team.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -151,53 +157,68 @@
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-5xl font-bold section-title">Project Experience</h2>
+                    <p class="mt-3 text-gray-600 max-w-2xl mx-auto">Selected projects demonstrating engineering, design, and problem‑solving.</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Project 1: ERP System -->
-                    <div id="project-erp" class="project-card rounded-lg shadow-lg overflow-hidden">
+                    <div id="project-erp" class="project-card rounded-2xl shadow-lg overflow-hidden border border-gray-100 bg-white">
                         <div class="project-image-wrapper">
-                            <img src="https://i.ibb.co/N6qhWXGZ/erp.png" alt="ERP System Project Image" class="w-full h-full object-cover">
+                            <img src="https://i.ibb.co/N6qhWXGZ/erp.png" alt="ERP System Project Image" class="w-full h-full object-cover" loading="lazy">
                             <div class="project-overlay">
                                 <h3>ERP System</h3>
-                                <a href="https://github.com/rav3n70-1/erp_project" target="_blank" class="view-project-link">View on GitHub</a>
+                                <div class="flex flex-wrap gap-2 mt-2">
+                                    <span class="px-2 py-0.5 text-xs rounded-full bg-white/20">PHP</span>
+                                    <span class="px-2 py-0.5 text-xs rounded-full bg-white/20">MySQL</span>
+                                    <span class="px-2 py-0.5 text-xs rounded-full bg-white/20">HTML/CSS</span>
+                                </div>
+                                <a href="https://github.com/rav3n70-1/erp_project" target="_blank" rel="noopener" class="view-project-link">View on GitHub</a>
                             </div>
                         </div>
                         <div class="project-content p-6">
-                            <p class="text-gray-600">Engineered a scalable backend using PHP and MySQL to automate core business processes.</p>
+                            <p class="text-gray-700">Engineered a scalable backend using PHP and MySQL to automate core business processes.</p>
                             <div class="project-details-expandable">
-                                <p class="text-gray-600 pt-4">Designed and implemented a normalized relational database schema, ensuring high data integrity and optimizing query performance. Developed a responsive and intuitive front-end interface using HTML and CSS.</p>
+                                <p class="text-gray-700 pt-4">Designed and implemented a normalized relational database schema, ensuring high data integrity and optimizing query performance. Developed a responsive and intuitive front-end interface using HTML and CSS.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Project 2: RedCellNet -->
-                    <div id="project-redcellnet" class="project-card rounded-lg shadow-lg overflow-hidden">
+                    <div id="project-redcellnet" class="project-card rounded-2xl shadow-lg overflow-hidden border border-gray-100 bg-white">
                         <div class="project-image-wrapper">
-                             <img src="https://i.ibb.co/1GBRbMS2/redcellnet.png" alt="RedCellNet Project Image" class="w-full h-full object-cover">
+                             <img src="https://i.ibb.co/1GBRbMS2/redcellnet.png" alt="RedCellNet Project Image" class="w-full h-full object-cover" loading="lazy">
                              <div class="project-overlay">
                                 <h3>RedCellNet App</h3>
-                                <a href="https://github.com/rav3n70-1/RedCellNet/" target="_blank" class="view-project-link">View on GitHub</a>
+                                <div class="flex flex-wrap gap-2 mt-2">
+                                    <span class="px-2 py-0.5 text-xs rounded-full bg-white/20">Flutter</span>
+                                    <span class="px-2 py-0.5 text-xs rounded-full bg-white/20">Firebase</span>
+                                </div>
+                                <a href="https://github.com/rav3n70-1/RedCellNet/" target="_blank" rel="noopener" class="view-project-link">View on GitHub</a>
                             </div>
                         </div>
                         <div class="project-content p-6">
-                            <p class="text-gray-600">Architected a robust system design for a mobile app connecting blood donors and recipients.</p>
+                            <p class="text-gray-700">Architected a robust system design for a mobile app connecting blood donors and recipients.</p>
                              <div class="project-details-expandable">
-                                <p class="text-gray-600 pt-4">Outlined a secure user authentication flow using Firebase Authentication and designed a real-time data synchronization system with Firebase Realtime Database.</p>
+                                <p class="text-gray-700 pt-4">Outlined a secure user authentication flow using Firebase Authentication and designed a real-time data synchronization system with Firebase Realtime Database.</p>
                             </div>
                         </div>
                     </div>
                     <!-- Project 3: ATM Simulation -->
-                    <div id="project-atm" class="project-card rounded-lg shadow-lg overflow-hidden">
+                    <div id="project-atm" class="project-card rounded-2xl shadow-lg overflow-hidden border border-gray-100 bg-white">
                          <div class="project-image-wrapper">
-                            <img src="https://i.ibb.co/67pGs7cJ/image.png" alt="ATM Simulation Project Image" class="w-full h-full object-cover">
+                            <img src="https://i.ibb.co/67pGs7cJ/image.png" alt="ATM Simulation Project Image" class="w-full h-full object-cover" loading="lazy">
                             <div class="project-overlay">
                                 <h3>ATM Simulation</h3>
-                                <a href="https://github.com/rav3n70-1/ATM-Project/" target="_blank" class="view-project-link">View on GitHub</a>
+                                <div class="flex flex-wrap gap-2 mt-2">
+                                    <span class="px-2 py-0.5 text-xs rounded-full bg-white/20">Java</span>
+                                    <span class="px-2 py-0.5 text-xs rounded-full bg-white/20">OOP</span>
+                                    <span class="px-2 py-0.5 text-xs rounded-full bg-white/20">CLI</span>
+                                </div>
+                                <a href="https://github.com/rav3n70-1/ATM-Project/" target="_blank" rel="noopener" class="view-project-link">View on GitHub</a>
                             </div>
                         </div>
                         <div class="project-content p-6">
-                            <p class="text-gray-600">Applied OOP principles in Java to develop a multithreaded command-line application.</p>
+                            <p class="text-gray-700">Applied OOP principles in Java to develop a multithreaded command-line application.</p>
                             <div class="project-details-expandable">
-                                <p class="text-gray-600 pt-4">Implemented key features including secure user authentication, balance inquiries, cash withdrawals, and deposit processing with a focus on logical consistency and robust error handling.</p>
+                                <p class="text-gray-700 pt-4">Implemented key features including secure user authentication, balance inquiries, cash withdrawals, and deposit processing with a focus on logical consistency and robust error handling.</p>
                             </div>
                         </div>
                     </div>
@@ -211,30 +232,62 @@
                 <div class="text-center mb-12">
                     <h2 class="text-5xl font-bold section-title">Technical Skills</h2>
                 </div>
-                <div class="max-w-4xl mx-auto">
-                    <div class="mb-6">
-                        <h4 class="text-xl font-semibold mb-2 crimson-text">Languages</h4>
-                        <p class="text-gray-700">PHP, Python, Java, JavaScript, C, Dart</p>
+                <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h4 class="text-xl font-semibold mb-4 crimson-text">Languages</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">PHP</span>
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">Java</span>
+                            <span class="skill-badge">JavaScript</span>
+                            <span class="skill-badge">C</span>
+                            <span class="skill-badge">Dart</span>
+                        </div>
                     </div>
-                    <div class="mb-6">
-                        <h4 class="text-xl font-semibold mb-2 crimson-text">Backend</h4>
-                        <p class="text-gray-700">API Design, Backend Architecture</p>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h4 class="text-xl font-semibold mb-4 crimson-text">Backend</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">API Design</span>
+                            <span class="skill-badge">Backend Architecture</span>
+                        </div>
                     </div>
-                    <div class="mb-6">
-                        <h4 class="text-xl font-semibold mb-2 crimson-text">Databases</h4>
-                        <p class="text-gray-700">MySQL, Firebase, Database Design, Normalization, Query Optimization</p>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h4 class="text-xl font-semibold mb-4 crimson-text">Databases</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">MySQL</span>
+                            <span class="skill-badge">Firebase</span>
+                            <span class="skill-badge">Database Design</span>
+                            <span class="skill-badge">Normalization</span>
+                            <span class="skill-badge">Query Optimization</span>
+                        </div>
                     </div>
-                     <div class="mb-6">
-                        <h4 class="text-xl font-semibold mb-2 crimson-text">Web Development</h4>
-                        <p class="text-gray-700">HTML5, CSS3</p>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h4 class="text-xl font-semibold mb-4 crimson-text">Web Development</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">HTML5</span>
+                            <span class="skill-badge">CSS3</span>
+                        </div>
+                        <h4 class="text-xl font-semibold mt-6 mb-4 crimson-text">App Development</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">Flutter (Intermediate)</span>
+                            <span class="skill-badge">Android (Intermediate)</span>
+                        </div>
                     </div>
-                    <div class="mb-6">
-                        <h4 class="text-xl font-semibold mb-2 crimson-text">App Development</h4>
-                        <p class="text-gray-700">Flutter (Intermediate), Android (Intermediate)</p>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-semibold mb-2 crimson-text">Developer Tools & Professional Skills</h4>
-                        <p class="text-gray-700">Git, GitHub, VS Code, Android Studio, Figma, Canva, AI Tools, OOP, SDLC, Problem-Solving, Agile Methodologies</p>
+                    <div class="md:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h4 class="text-xl font-semibold mb-4 crimson-text">Developer Tools & Professional Skills</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">Git</span>
+                            <span class="skill-badge">GitHub</span>
+                            <span class="skill-badge">VS Code</span>
+                            <span class="skill-badge">Android Studio</span>
+                            <span class="skill-badge">Figma</span>
+                            <span class="skill-badge">Canva</span>
+                            <span class="skill-badge">AI Tools</span>
+                            <span class="skill-badge">OOP</span>
+                            <span class="skill-badge">SDLC</span>
+                            <span class="skill-badge">Problem-Solving</span>
+                            <span class="skill-badge">Agile Methodologies</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -247,8 +300,8 @@
                     <h2 class="text-5xl font-bold section-title">Get In Touch</h2>
                     <p class="text-gray-600 mt-2">I'm currently seeking internship opportunities. Feel free to reach out!</p>
                 </div>
-                <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-xl flex flex-wrap">
-                    <div class="w-full md:w-1/2 p-8 crimson-bg text-white rounded-l-lg">
+                <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl flex flex-wrap border border-gray-100 overflow-hidden">
+                    <div class="w-full md:w-1/2 p-8 crimson-bg text-white">
                         <h3 class="text-2xl font-bold text-white mb-4" style="font-family: 'Crimson Text', serif;">Contact Information</h3>
                         <p class="mb-6">Let's connect! Whether you have a question or just want to say hi, my inbox is always open.</p>
                         <div class="space-y-4">
@@ -265,10 +318,10 @@
                     <div class="w-full md:w-1/2 p-8 flex flex-col justify-center items-center">
                         <h3 class="text-2xl font-bold mb-4">Find me on</h3>
                         <div class="flex space-x-6">
-                            <a href="https://github.com/rav3n70-1" class="social-icon text-gray-600 hover:crimson-text">
+                            <a href="https://github.com/rav3n70-1" class="social-icon text-gray-600 hover:crimson-text" aria-label="GitHub" target="_blank" rel="noopener">
                                 <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.483 2.924 8.29 6.94 9.53.5.093.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.838.616-3.436-1.373-3.436-1.373-.455-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" /></svg>
                             </a>
-                            <a href="https://www.linkedin.com/in/mehedi-hasan-rohan-62b5512aa/" class="social-icon text-gray-600 hover:crimson-text">
+                            <a href="https://www.linkedin.com/in/mehedi-hasan-rohan-62b5512aa/" class="social-icon text-gray-600 hover:crimson-text" aria-label="LinkedIn" target="_blank" rel="noopener">
                                 <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                             </a>
                         </div>
@@ -285,7 +338,7 @@
         </div>
     </footer>
 
-    <button id="back-to-top" class="crimson-bg text-white w-12 h-12 rounded-full shadow-lg hover:opacity-90 transition">
+    <button id="back-to-top" class="crimson-bg text-white w-12 h-12 rounded-full shadow-lg hover:opacity-90 transition" aria-label="Back to top">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" /></svg>
     </button>
 
